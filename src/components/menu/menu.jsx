@@ -22,7 +22,6 @@ import { DeleteConfirmation } from '../../shared/deleteConfirmation/DeleteConfir
     
     .menu-item {
         margin: 1rem;
-
     }
     `;
 
