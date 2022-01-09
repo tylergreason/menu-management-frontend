@@ -27,16 +27,17 @@ import createMenuData from '../../shared/menuData';
 
 function renderMenuItems(menuItemData) {
     return menuItemData.map(item => {
-              return <MenuItem
-               key={item.key}
-               name={item.name}
-               price={item.price}
-               imgUrl={item.imgUrl}
-               description={item.description}
-               tags={item.tags}
+            return <MenuItem
+            key={item.key}
+            name={item.name}
+            price={item.price}
+            imgUrl={item.imgUrl}
+            description={item.description}
+            tags={item.tags}
+            imgAlt={item.imgAlt}
 
-               ></MenuItem>
-            })
+            ></MenuItem>
+        })
 }
 
 function Menu() {

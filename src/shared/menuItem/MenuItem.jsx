@@ -19,6 +19,7 @@ const Wrapper = styled.div`
 
     .description {
         width: 100%;
+        margin-bottom: 1rem;
     }
 `;
 
@@ -33,7 +34,6 @@ const ItemDetails = styled.div`
 `;
 
 export function MenuItem(props) {
-    const imgAlt = 'Food photo, tagged ' + props.tags;
     return (
         <Wrapper className="menu-item">
             <ItemDetails>
@@ -41,7 +41,7 @@ export function MenuItem(props) {
                 <div>${props.price}</div>
             </ItemDetails>
             <div className="description">{props.description}</div>
-            <img src={props.imgUrl} alt={imgAlt}/>
+            <img src={props.imgUrl} alt={props.imgAlt}/>
         </Wrapper>
     );
 }
