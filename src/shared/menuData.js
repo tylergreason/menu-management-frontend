@@ -6,12 +6,15 @@ export default async function createMenuData() {
 	if (imageData?.hits) {
 		return imageData.hits.map((hit) => {
 			const price = Math.ceil(Math.random() * 10) + 10;
+			const tags = hit.tags.split(', ');
+			const name = tags[0] ? tags[0] : 'Name';
 			return {
 				key: hit.id,
-				name: 'name?',
+				name: name,
 				price: price,
 				imgUrl: hit.largeImageURL,
-				description: 'desc',
+				description: hit.tags,
+				tags: hit.tags,
 			};
 		});
 	}

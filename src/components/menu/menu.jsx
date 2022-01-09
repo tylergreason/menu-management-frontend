@@ -33,6 +33,7 @@ function renderMenuItems(menuItemData) {
                price={item.price}
                imgUrl={item.imgUrl}
                description={item.description}
+               tags={item.tags}
 
                ></MenuItem>
             })
@@ -49,15 +50,12 @@ function Menu() {
                 setMenuItemData(result);
             }
             check();
-        } else {
-            console.log(menuItemData);
         }
     })
 
     return (
         <Wrapper>
             <h2>Restaurant Menu</h2>
-
         <MenuItems>
          {renderMenuItems(menuItemData)}
         </MenuItems>

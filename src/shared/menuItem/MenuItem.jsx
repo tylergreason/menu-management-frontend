@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { searchUrl } from '../constants';
 
 const Wrapper = styled.div`
     width: 20rem;
@@ -10,28 +9,39 @@ const Wrapper = styled.div`
     flex-flow: column;
     justify-content: center;
     align-items: center;
-img {
-    width: 75%;
-}
+    
+    h3 {
+        text-transform: capitalize;
+    }
+    img {
+        width: 100%;
+    }
+
+    .description {
+        width: 100%;
+    }
 `;
 
 const ItemDetails = styled.div`
+    width: 100%;
     display: flex;
     flex-flow: row;
-    width: 100%;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
 
 `;
 
 export function MenuItem(props) {
+    const imgAlt = 'Food photo, tagged ' + props.tags;
     return (
         <Wrapper className="menu-item">
-            <h3>{props.name}</h3>
             <ItemDetails>
-                <div>{props.description}</div>
+                <h3>{props.name}</h3>
                 <div>${props.price}</div>
             </ItemDetails>
-                <img src={props.imgUrl} alt=""/>
+            <div className="description">{props.description}</div>
+            <img src={props.imgUrl} alt={imgAlt}/>
         </Wrapper>
     );
 }
