@@ -22,15 +22,11 @@ import styled from 'styled-components';
     }
     `;
 
-    const Header = styled.h2`
-        color: ${'blue'};
-    `;
-
 function Menu() {
 
     return (
         <Wrapper>
-            <Header>Restaurant Menu</Header>
+            <h2>Restaurant Menu</h2>
 
         <MenuItems>
             <MenuItem></MenuItem>
