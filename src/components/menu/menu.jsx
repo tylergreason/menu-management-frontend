@@ -1,10 +1,20 @@
 import React from 'react';
+import {MenuItem} from '../../shared/MenuItem';
 
-function Menu (){
 
+function Menu() {
     return (
-        <div>menu</div>
+        <>
+            <div>menu</div>
+        <div>
+
+            <MenuItem></MenuItem>
+            <MenuItem></MenuItem>
+            <MenuItem></MenuItem>
+            <MenuItem></MenuItem>
+        </div>
+        </>
     );
-}
+};
 
 export default Menu;
