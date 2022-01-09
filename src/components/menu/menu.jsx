@@ -24,6 +24,19 @@ import createMenuData from '../../shared/menuData';
     }
     `;
 
+
+function renderMenuItems(menuItemData) {
+    return menuItemData.map(item => {
+              return <MenuItem
+               key={item.key}
+               name={item.name}
+               price={item.price}
+               imgUrl={item.imgUrl}
+
+               ></MenuItem>
+            })
+}
+
 function Menu() {
 
     const [menuItemData, setMenuItemData] = useState([]);
@@ -35,6 +48,8 @@ function Menu() {
                 setMenuItemData(result);
             }
             check();
+        } else {
+            console.log(menuItemData);
         }
     })
 
@@ -43,10 +58,7 @@ function Menu() {
             <h2>Restaurant Menu</h2>
 
         <MenuItems>
-            <MenuItem></MenuItem>
-            <MenuItem></MenuItem>
-            <MenuItem></MenuItem>
-            <MenuItem></MenuItem>
+         {renderMenuItems(menuItemData)}
         </MenuItems>
         </Wrapper>
     );

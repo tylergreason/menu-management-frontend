@@ -11,6 +11,7 @@ export default async function createMenuData() {
 				name: 'name',
 				price: price,
 				imgUrl: hit.largeImgUrl,
+				description: 'desc',
 			};
 		});
 	}
