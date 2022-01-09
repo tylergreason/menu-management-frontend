@@ -41,6 +41,7 @@ function Menu() {
                         description: item.description,
                         tags: item.tags,
                         imgAlt: item.imgAlt,
+                        id: item.key
                     }
                 }
                 clickDelete={(menuItem) => promptDeleteMenuItem(menuItem)}
@@ -54,7 +55,10 @@ function Menu() {
     }
 
     function deleteMenuItem(menuItem) { 
-        setMenuItemData(menuItemData.filter(item => item.key !== menuItem.key));
+        const filteredMenuItems = menuItemData.filter(item => item.key !== menuItem.id);
+        console.log(filteredMenuItems);
+        setMenuItemData(filteredMenuItems);
+        setConfirmDelete(false);
     }
 
     const [menuItemData, setMenuItemData] = useState([]);
@@ -75,9 +79,9 @@ function Menu() {
         <>
         <Wrapper>
             <h2>Restaurant Menu</h2>
-        <MenuItems>
-         {renderMenuItems(menuItemData)}
-        </MenuItems>
+            <MenuItems>
+                {renderMenuItems(menuItemData)}
+            </MenuItems>
         </Wrapper>
         <DeleteConfirmation 
             hidden={!confirmDelete}

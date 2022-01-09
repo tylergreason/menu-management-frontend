@@ -63,7 +63,7 @@ export function MenuItem(props) {
             <div className="delete-wrapper">
                 <button
                 className="delete-button"
-                onClick={() => props.clickDelete()}
+                onClick={() => props.clickDelete(menuItem)}
                 >Delete</button>
             </div>
         </Wrapper>

@@ -25,6 +25,10 @@ const Background = styled.div`
         flex-flow: column;
         padding: 1rem;
 
+        .menu-item-name {
+            text-transform: capitalize;
+        }
+
         .button-wrapper {
             display: flex;
             justify-content: space-between;
@@ -40,9 +44,9 @@ export function DeleteConfirmation(props) {
         <Background className={props.hidden ? 'hidden' : ''}>
         <div className="wrapper">
             <div>Are you sure you want to delete this dish?</div>
-            <div>{props?.itemToDelete?.name || ''}</div>
+            <div className="menu-item-name">{props?.itemToDelete?.name || ''}</div>
             <div className="button-wrapper">
-                <button onClick={() => props.clickYes()}>Yes</button>
+                <button onClick={() => props.clickYes(props.itemToDelete)}>Yes</button>
                 <button onClick={() => props.clickNo()}>No</button>
             </div>
         </div>
