@@ -27,24 +27,25 @@ import { DeleteConfirmation } from '../../shared/deleteConfirmation/DeleteConfir
     `;
 
 
-function renderMenuItems(menuItemData) {
-    return menuItemData.map(item => {
-            return <MenuItem
-            key={item.key}
-            name={item.name}
-            price={item.price}
-            imgUrl={item.imgUrl}
-            description={item.description}
-            tags={item.tags}
-            imgAlt={item.imgAlt}
-
-            ></MenuItem>
-        })
-}
 
 function Menu() {
+    function renderMenuItems(menuItemData) {
+        return menuItemData.map(item => {
+                return <MenuItem
+                key={item.key}
+                name={item.name}
+                price={item.price}
+                imgUrl={item.imgUrl}
+                description={item.description}
+                tags={item.tags}
+                imgAlt={item.imgAlt}
+                clickDelete={() => setConfirmDelete(true)}
+                ></MenuItem>
+            })
+    }
 
     const [menuItemData, setMenuItemData] = useState([]);
+    const [confirmDelete, setConfirmDelete] = useState(false);
 
     useEffect(() => {
         if (!menuItemData.length) {
@@ -64,7 +65,10 @@ function Menu() {
          {renderMenuItems(menuItemData)}
         </MenuItems>
         </Wrapper>
-        <DeleteConfirmation></DeleteConfirmation>
+        <DeleteConfirmation 
+            hidden={!confirmDelete}
+            clickNo={() => setConfirmDelete(false)}
+        ></DeleteConfirmation>
         </>
     );
 };

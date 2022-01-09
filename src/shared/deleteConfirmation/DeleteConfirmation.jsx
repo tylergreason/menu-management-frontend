@@ -42,7 +42,7 @@ export function DeleteConfirmation(props) {
             <div>Are you sure you want to delete this dish?</div>
             <div className="button-wrapper">
                 <button>Yes</button>
-                <button>No</button>
+                <button onClick={() => props.clickNo()}>No</button>
             </div>
         </div>
         </Background>

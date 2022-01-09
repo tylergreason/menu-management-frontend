@@ -29,6 +29,13 @@ const Wrapper = styled.div`
         justify-content: flex-end;
         align-content: center;
         margin-top: 1rem;
+        .delete-button{
+            background-color: RGBA(0,0,0,0);
+            color: black;
+            font-size: 1rem;
+            border: 1px solid red;
+            border-radius: 5%;
+        }
     }
 `;
 
@@ -40,15 +47,6 @@ const ItemDetails = styled.div`
     align-items: center;
     margin-bottom: 1rem;
 `;
-
-const DeleteButton = styled.button`
-    background-color: RGBA(0,0,0,0);
-    color: black;
-    font-size: 1rem;
-    border: 1px solid red;
-    border-radius: 5%;
-`;
-
 
 
 export function MenuItem(props) {
@@ -62,9 +60,10 @@ export function MenuItem(props) {
 
             <img src={props.imgUrl} alt={props.imgAlt}/>
             <div className="delete-wrapper">
-                <DeleteButton
-                onclick="()"
-                >Delete</DeleteButton>
+                <button
+                className="delete-button"
+                onClick={() => props.clickDelete()}
+                >Delete</button>
             </div>
         </Wrapper>
     );
