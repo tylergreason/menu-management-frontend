@@ -20,7 +20,8 @@ import createMenuData from '../../shared/menuData';
     flex-flow: row wrap;
     
     .menu-item {
-        padding: 1rem;
+        margin: 1rem;
+
     }
     `;
 
