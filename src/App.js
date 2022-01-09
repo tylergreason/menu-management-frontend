@@ -1,12 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
 import Menu from './components/menu/Menu';
+import styled from 'styled-components';
+
+const Wrapper = styled.section`
+	background-color: beige;
+`;
 
 function App() {
 	return (
-		<div className="App">
+		<Wrapper className="App">
 			<Menu></Menu>
-		</div>
+		</Wrapper>
 	);
 }
 
