@@ -33,19 +33,33 @@ function Menu() {
         return menuItemData.map(item => {
                 return <MenuItem
                 key={item.key}
-                name={item.name}
-                price={item.price}
-                imgUrl={item.imgUrl}
-                description={item.description}
-                tags={item.tags}
-                imgAlt={item.imgAlt}
-                clickDelete={() => setConfirmDelete(true)}
+                menuItem = {
+                    {
+                        name: item.name,
+                        price: item.price,
+                        imgUrl: item.imgUrl,
+                        description: item.description,
+                        tags: item.tags,
+                        imgAlt: item.imgAlt,
+                    }
+                }
+                clickDelete={(menuItem) => promptDeleteMenuItem(menuItem)}
                 ></MenuItem>
             })
     }
 
+    function promptDeleteMenuItem(menuItem) {
+        setConfirmDelete(true);
+        setItemToDelete(menuItem);
+    }
+
+    function deleteMenuItem(menuItem) { 
+        setMenuItemData(menuItemData.filter(item => item.key !== menuItem.key));
+    }
+
     const [menuItemData, setMenuItemData] = useState([]);
     const [confirmDelete, setConfirmDelete] = useState(false);
+    const [itemToDelete, setItemToDelete] = useState({});
 
     useEffect(() => {
         if (!menuItemData.length) {
@@ -67,7 +81,9 @@ function Menu() {
         </Wrapper>
         <DeleteConfirmation 
             hidden={!confirmDelete}
+            itemToDelete={itemToDelete}
             clickNo={() => setConfirmDelete(false)}
+            clickYes={() => deleteMenuItem(itemToDelete)}
         ></DeleteConfirmation>
         </>
     );

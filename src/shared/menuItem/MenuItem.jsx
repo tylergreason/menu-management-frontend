@@ -50,15 +50,16 @@ const ItemDetails = styled.div`
 
 
 export function MenuItem(props) {
+    const menuItem = props.menuItem;
     return (
         <Wrapper className="menu-item">
             <ItemDetails>
-                <h3>{props.name}</h3>
-                <div>${props.price}</div>
+                <h3>{menuItem.name}</h3>
+                <div>${menuItem.price}</div>
             </ItemDetails>
-            <div className="description">{props.description}</div>
+            <div className="description">{menuItem.description}</div>
 
-            <img src={props.imgUrl} alt={props.imgAlt}/>
+            <img src={menuItem.imgUrl} alt={menuItem.imgAlt}/>
             <div className="delete-wrapper">
                 <button
                 className="delete-button"
