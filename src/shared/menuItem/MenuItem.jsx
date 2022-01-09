@@ -49,6 +49,8 @@ const DeleteButton = styled.button`
     border-radius: 5%;
 `;
 
+
+
 export function MenuItem(props) {
     return (
         <Wrapper className="menu-item">
@@ -60,7 +62,9 @@ export function MenuItem(props) {
 
             <img src={props.imgUrl} alt={props.imgAlt}/>
             <div className="delete-wrapper">
-                <DeleteButton>Delete</DeleteButton>
+                <DeleteButton
+                onclick="()"
+                >Delete</DeleteButton>
             </div>
         </Wrapper>
     );

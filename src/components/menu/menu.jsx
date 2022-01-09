@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {MenuItem} from '../../shared/menuItem/MenuItem';
 import styled from 'styled-components';
 import createMenuData from '../../shared/menuData';
+import { DeleteConfirmation } from '../../shared/deleteConfirmation/DeleteConfirmation';
 
     const Wrapper = styled.section`
     width: 100%;
@@ -56,12 +57,15 @@ function Menu() {
     })
 
     return (
+        <>
         <Wrapper>
             <h2>Restaurant Menu</h2>
         <MenuItems>
          {renderMenuItems(menuItemData)}
         </MenuItems>
         </Wrapper>
+        <DeleteConfirmation></DeleteConfirmation>
+        </>
     );
 };
 
