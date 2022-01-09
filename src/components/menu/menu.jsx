@@ -11,6 +11,7 @@ import styled from 'styled-components';
     flex-flow: column;
     align-items: center;
     justify-content: flex-start;
+    max-width: 70rem;
     `;
 
     const MenuItems = styled.div`
