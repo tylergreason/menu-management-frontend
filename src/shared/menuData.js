@@ -8,9 +8,9 @@ export default async function createMenuData() {
 			const price = Math.ceil(Math.random() * 10);
 			return {
 				key: hit.id,
-				name: 'name',
+				name: 'name?',
 				price: price,
-				imgUrl: hit.largeImgUrl,
+				imgUrl: hit.largeImageURL,
 				description: 'desc',
 			};
 		});
