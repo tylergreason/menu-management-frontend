@@ -1,5 +1,5 @@
 import React from 'react';
-import {MenuItem} from '../../shared/MenuItem';
+import {MenuItem} from '../../shared/menuItem/MenuItem';
 import './Menu.css';
 
 function Menu() {
