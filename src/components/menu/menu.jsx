@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {MenuItem} from '../../shared/menuItem/MenuItem';
 import styled from 'styled-components';
+import createMenuData from '../../shared/menuData';
 
     const Wrapper = styled.section`
     width: 100%;
@@ -24,6 +25,18 @@ import styled from 'styled-components';
     `;
 
 function Menu() {
+
+    const [menuItemData, setMenuItemData] = useState([]);
+
+    useEffect(() => {
+        if (!menuItemData.length) {
+        async function check(){
+                const result = await createMenuData();
+                setMenuItemData(result);
+            }
+            check();
+        }
+    })
 
     return (
         <Wrapper>
