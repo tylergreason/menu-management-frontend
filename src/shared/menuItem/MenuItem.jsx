@@ -4,12 +4,23 @@ import { searchUrl } from '../constants';
 
 const Wrapper = styled.div`
     width: 20rem;
+    border: 1px solid black; 
+    margin: 1rem;
+    display: flex; 
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+img {
+    width: 75%;
+}
 `;
 
 const ItemDetails = styled.div`
     display: flex;
     flex-flow: row;
+    width: 100%;
     justify-content: space-between;
+
 `;
 
 export function MenuItem(props) {
@@ -19,8 +30,8 @@ export function MenuItem(props) {
             <ItemDetails>
                 <div>{props.description}</div>
                 <div>${props.price}</div>
-                <img src={props.imgUrl} alt=""/>
             </ItemDetails>
+                <img src={props.imgUrl} alt=""/>
         </Wrapper>
     );
 }

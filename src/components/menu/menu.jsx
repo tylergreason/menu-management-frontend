@@ -5,7 +5,7 @@ import createMenuData from '../../shared/menuData';
 
     const Wrapper = styled.section`
     width: 100%;
-    height: 100vh;
+    height: 100%;
     padding: 1rem;
     background-color: beige;
     display: flex;
@@ -32,6 +32,7 @@ function renderMenuItems(menuItemData) {
                name={item.name}
                price={item.price}
                imgUrl={item.imgUrl}
+               description={item.description}
 
                ></MenuItem>
             })
