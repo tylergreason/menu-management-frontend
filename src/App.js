@@ -1,8 +1,7 @@
-import './App.css';
 import Menu from './components/menu/Menu';
 import styled from 'styled-components';
 
-const Wrapper = styled.section`
+const Wrapper = styled.main`
 	background-color: beige;
 	display: flex;
 	justify-content: center;
