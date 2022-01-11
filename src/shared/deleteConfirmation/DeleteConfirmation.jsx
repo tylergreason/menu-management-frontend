@@ -41,7 +41,7 @@ const Background = styled.div`
 export function DeleteConfirmation(props) {
 
     return(
-        <Background className={props.hidden ? 'hidden' : ''}>
+        <Background className={props.hidden ? 'hidden' : ''} id="delete-confirmation-modal">
         <div className="wrapper">
             <div>Are you sure you want to delete this dish?</div>
             <div className="menu-item-name">{props?.itemToDelete?.name || ''}</div>

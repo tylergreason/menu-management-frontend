@@ -55,7 +55,6 @@ function Menu() {
 
     function deleteMenuItem(menuItem) { 
         const filteredMenuItems = menuItemData.filter(item => item.key !== menuItem.id);
-        console.log(filteredMenuItems);
         setMenuItemData(filteredMenuItems);
         setConfirmDelete(false);
     }

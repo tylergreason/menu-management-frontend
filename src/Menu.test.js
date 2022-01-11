@@ -13,4 +13,13 @@ describe('Delete Menu Item', () => {
 		mount(<Menu />);
 		cy.get('.menu-item').find('.delete-button').should('be.visible');
 	});
+
+	it("Clicking a menu item's delete button should bring up the delete confirmation modal.", () => {
+		mount(<Menu />);
+		cy.get('#delete-confirmation-modal').should('not.be.visible');
+		cy.get('#delete-confirmation-modal').should('exist');
+		cy.get('.menu-item .delete-button').first().click();
+		cy.get('#delete-confirmation-modal').should('not.have.class', 'hidden');
+		// cy.get('#delete-confirmation-modal').should('be.visible');
+	});
 });
