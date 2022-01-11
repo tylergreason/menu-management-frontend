@@ -76,7 +76,7 @@ function Menu() {
 
     return (
         <>
-        <Wrapper>
+        <Wrapper id="menu">
             <h2>Restaurant Menu</h2>
             <MenuItems>
                 {renderMenuItems(menuItemData)}
