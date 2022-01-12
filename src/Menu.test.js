@@ -22,14 +22,16 @@ describe('Delete Menu Item', () => {
 		cy.get('#delete-confirmation-modal').should('not.have.class', 'hidden');
 	});
 
-	it('Confirming the deletion of a menu item should remove it from menuItemData', () => {
+	it('Confirming the deletion of a menu item should remove it from menuItemData and hide the modal', () => {
 		mount(<Menu />);
-		const menuItemQuantity = document.querySelectorAll('menu-item').length;
-		cy.get('.menu-item').should('have.length.gte', menuItemQuantity);
+		const menuItems = cy.get('.menu-item');
+		console.log(menuItems);
+		cy.get('.menu-item').its('length').should('eq', 20);
 		cy.get('.menu-item .delete-button').first().click();
 		cy.get('#delete-confirmation-modal button')
 			.first()
 			.click({ force: true });
-		cy.get('.menu-item').should('have.length.gte', menuItemQuantity - 1);
+		cy.get('.menu-item').its('length').should('eq', 19);
+		// cy.get('#delete-confirmation-modal button').should('not.be.visible');
 	});
 });
