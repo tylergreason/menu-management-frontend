@@ -37,6 +37,6 @@ describe('Delete Menu Item', () => {
 		cy.get('.menu-item')
 			.its('length')
 			.should('eq', initialMenuItemQuantity - 1);
-		// cy.get('#delete-confirmation-modal button').should('not.be.visible');
+		cy.get('#delete-confirmation-modal').should('not.be.visible');
 	});
 });
