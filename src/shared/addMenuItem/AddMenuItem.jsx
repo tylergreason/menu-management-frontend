@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
 const Form = styled.form`
@@ -26,6 +26,19 @@ const Form = styled.form`
 
 export default function AddMenuItem() {
 
+    const [menuItem, setMenuItem] = useState({
+        name: '',
+        description: '', 
+        price: '', 
+        imgUrl: ''
+    });
+
+    const [formValidity, setFormValidity] = useState(false);
+
+    function checkFormValidity() {
+        setFormValidity(!Object.keys(menuItem).find(key => !menuItem(key.length)))
+    }
+
     function renderFormInputs() {
         const inputsToRender = ['name', 'description', 'price', 'imgUrl'];
         return inputsToRender.map((input, idx) => {
@@ -44,7 +57,7 @@ export default function AddMenuItem() {
         <Form id="add-menu-item">
             <h3>Add Menu Item</h3>
             {renderFormInputs()}
-            <input type="submit" value="Submit"></input>
+            <input disabled={!formValidity} type="submit" value="Submit"></input>
         </Form>
     )
 }

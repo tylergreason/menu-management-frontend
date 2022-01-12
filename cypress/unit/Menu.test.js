@@ -66,7 +66,11 @@ describe.only('Add menu item', () => {
 	it('should have a submit button', () => {
 		cy.get('#add-menu-item input').contains('Submit');
 	});
-	// submit button is disabled if fields are empty
+
+	it("It's submit button should be disabled if any input field is empty", () => {
+		cy.get('#add-menu-item input').should('be.disabled');
+	});
+
 	// submit button is not disabled if all fields are not empty
 	// submit button submits the new menu item, and that item appears in the list of menu items
 	// should have a clear button
