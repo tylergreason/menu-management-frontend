@@ -67,7 +67,11 @@ describe.only('Add menu item', () => {
 		cy.get('#add-menu-item input').contains('Submit');
 	});
 
-	it("It's submit button should be disabled if any input field is empty", () => {
+	it('Its submit button should be disabled if any input field is empty', () => {
+		cy.get('#add-menu-item input[name="name"]').type('name');
+		cy.get('#add-menu-item input[name="description"]').type('description');
+		cy.get('#add-menu-item input[name="price"]').type('price');
+		cy.get('#add-menu-item input[name="imgUrl"]').clear();
 		cy.get('#add-menu-item input').should('be.disabled');
 	});
 
