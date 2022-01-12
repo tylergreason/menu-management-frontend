@@ -3,6 +3,7 @@ import {MenuItem} from '../../shared/menuItem/MenuItem';
 import styled from 'styled-components';
 import createMenuData from '../../shared/menuData';
 import { DeleteConfirmation } from '../../shared/deleteConfirmation/DeleteConfirmation';
+import AddMenuItem from '../../shared/addMenuItem/AddMenuItem';
 
     const Wrapper = styled.section`
     width: 100%;
@@ -77,6 +78,7 @@ function Menu() {
         <>
         <Wrapper id="menu">
             <h2>Restaurant Menu</h2>
+        <AddMenuItem></AddMenuItem>
             <MenuItems>
                 {renderMenuItems(menuItemData)}
             </MenuItems>

@@ -53,3 +53,13 @@ describe('Delete Menu Item', () => {
 		cy.get('#delete-confirmation-modal').should('not.be.visible');
 	});
 });
+
+describe.only('Add menu item', () => {
+	before(() => {
+		mount(<Menu />);
+	});
+
+	it('should exist.', () => {
+		cy.get('#add-menu-item').should('exist');
+	});
+});
