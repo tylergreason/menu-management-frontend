@@ -75,6 +75,14 @@ describe.only('Add menu item', () => {
 		cy.get('#add-menu-item input').should('be.disabled');
 	});
 
+	it('submit button is not disabled if all input fields are not empty', () => {
+		cy.get('#add-menu-item input[name="name"]').type('name');
+		cy.get('#add-menu-item input[name="description"]').type('description');
+		cy.get('#add-menu-item input[name="price"]').type('price');
+		cy.get('#add-menu-item input[name="imgUrl"]').type('imgUrl');
+		cy.get('#add-menu-item input').should('not.be.disabled');
+	});
+
 	// submit button is not disabled if all fields are not empty
 	// submit button submits the new menu item, and that item appears in the list of menu items
 	// should have a clear button
