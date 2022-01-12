@@ -24,10 +24,12 @@ describe('Delete Menu Item', () => {
 
 	it('Confirming the deletion of a menu item should remove it from menuItemData', () => {
 		mount(<Menu />);
-		console.log($r);
+		const menuItemQuantity = document.querySelectorAll('menu-item').length;
+		cy.get('.menu-item').should('have.length.gte', menuItemQuantity);
 		cy.get('.menu-item .delete-button').first().click();
 		cy.get('#delete-confirmation-modal button')
 			.first()
 			.click({ force: true });
+		cy.get('.menu-item').should('have.length.gte', menuItemQuantity - 1);
 	});
 });
