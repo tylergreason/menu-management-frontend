@@ -55,11 +55,21 @@ describe('Delete Menu Item', () => {
 });
 
 describe.only('Add menu item', () => {
-	before(() => {
+	beforeEach(() => {
 		mount(<Menu />);
 	});
 
 	it('should exist.', () => {
 		cy.get('#add-menu-item').should('exist');
 	});
+
+	it('should have a submit button', () => {
+		cy.get('#add-menu-item input').contains('Submit');
+	});
+	// submit button is disabled if fields are empty
+	// submit button is not disabled if all fields are not empty
+	// submit button submits the new menu item, and that item appears in the list of menu items
+	// should have a clear button
+	// clear button is disabled if all fields are empty
+	// clear button clears inputs on submit
 });

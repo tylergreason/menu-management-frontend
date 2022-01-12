@@ -44,6 +44,7 @@ export default function AddMenuItem() {
         <Form id="add-menu-item">
             <h3>Add Menu Item</h3>
             {renderFormInputs()}
+            <input type="submit" value="Submit"></input>
         </Form>
     )
 }
