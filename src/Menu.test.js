@@ -20,6 +20,14 @@ describe('Delete Menu Item', () => {
 		cy.get('#delete-confirmation-modal').should('exist');
 		cy.get('.menu-item .delete-button').first().click();
 		cy.get('#delete-confirmation-modal').should('not.have.class', 'hidden');
-		// cy.get('#delete-confirmation-modal').should('be.visible');
+	});
+
+	it('Confirming the deletion of a menu item should remove it from menuItemData', () => {
+		mount(<Menu />);
+		console.log($r);
+		cy.get('.menu-item .delete-button').first().click();
+		cy.get('#delete-confirmation-modal button')
+			.first()
+			.click({ force: true });
 	});
 });
