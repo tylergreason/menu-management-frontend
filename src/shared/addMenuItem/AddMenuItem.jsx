@@ -35,8 +35,15 @@ export default function AddMenuItem() {
 
     const [formValidity, setFormValidity] = useState(false);
 
-    function checkFormValidity() {
-        setFormValidity(!Object.keys(menuItem).find(key => !menuItem(key.length)))
+    function checkFormValidity(newMenuItem) {
+        setFormValidity(!Object.keys(newMenuItem).find(key => !newMenuItem[key].trim().length))
+    }
+
+    function formInputOnChange(event) {
+        const menuItemCopy = {...menuItem};
+        menuItemCopy[event.target.name] = event.target.value;
+        setMenuItem(menuItemCopy);
+        checkFormValidity(menuItemCopy);
     }
 
     function renderFormInputs() {
@@ -47,7 +54,7 @@ export default function AddMenuItem() {
             <label htmlFor={input}>
                 Item {input}: 
             </label>               
-                <input type="text" name={input}/>
+                <input type="text" name={input} onChange={formInputOnChange}/>
                 </div>
             )
         })
