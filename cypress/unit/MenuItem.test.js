@@ -6,8 +6,12 @@ const newMenuItemFieldNames = ['name', 'description', 'price', 'imgUrl'];
 
 // describe edit menu item button
 describe('Edit menu item button', () => {
+	beforeEach(() => {
+		mount(<Menu />);
+	});
+
 	it('Should exist.', () => {
-		cy.get('.menu-item .edit-button').to('exist');
+		cy.get('.menu-item .edit-button').should('exist');
 	});
 });
 // it('Should show the edit form of the menu item when clicked.', () =>{})

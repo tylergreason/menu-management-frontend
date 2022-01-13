@@ -62,6 +62,7 @@ export function MenuItem(props) {
 
             <img src={menuItem.imgUrl} alt={menuItem.imgAlt}/>
             <div className="delete-wrapper">
+                <button className="edit-button">Edit</button>
                 <button
                 className="delete-button"
                 onClick={() => props.clickDelete(menuItem)}
