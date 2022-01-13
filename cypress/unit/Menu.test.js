@@ -99,8 +99,11 @@ describe.only('Add menu item', () => {
 			.should('eq', initialMenuItemQuantity + 1);
 	});
 
+	it('should have a clear button', () => {
+		cy.get('#add-menu-item button.clear-form').should('be.visible');
+	});
+
 	// it.only('', () => {});
-	// should have a clear button
 	// clear button is disabled if all fields are empty
 	// clear button clears inputs on submit
 });
