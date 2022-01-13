@@ -52,6 +52,19 @@ export default function AddMenuItem(props) {
         checkClearDisabled(menuItemCopy);
     }
 
+    function clearForm() {
+     setMenuItem({
+        name: '',
+        description: '', 
+        price: '', 
+        imgUrl: ''
+    });
+
+    Object.keys(menuItem).forEach(key => document.querySelector(`input[name=${key}]`).value = '');
+    setFormValidity(false);
+    setClearDisabled(true);   
+    }
+
     function renderFormInputs() {
         const inputsToRender = ['name', 'description', 'price', 'imgUrl'];
         return inputsToRender.map((input, idx) => {
@@ -76,7 +89,7 @@ export default function AddMenuItem(props) {
             <h3>Add Menu Item</h3>
             {renderFormInputs()}
             <input disabled={!formValidity} type="submit" value="Submit"></input>
-            <button type="button" className="clear-form" disabled={clearDisabled}>Clear</button>
+            <button disabled={clearDisabled} type="button" className="clear-form" onClick={clearForm}>Clear</button>
         </Form>
     )
 }

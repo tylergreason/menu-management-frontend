@@ -2,6 +2,14 @@ import React from 'react';
 import { mount } from '@cypress/react';
 import Menu from '../../src/components/menu/Menu';
 
+const newMenuItemFieldNames = ['name', 'description', 'price', 'imgUrl'];
+
+function fillNewMenuItemFields() {
+	newMenuItemFieldNames.forEach((key) => {
+		cy.get(`#add-menu-item input[name="${key}"]`).type(key);
+	});
+}
+
 it('renders menu items', () => {
 	mount(<Menu />);
 	cy.get('section#menu').should('be.visible');
@@ -69,26 +77,18 @@ describe.only('Add menu item', () => {
 	});
 
 	it('Its submit button should be disabled if any input field is empty', () => {
-		cy.get('#add-menu-item input[name="name"]').type('name');
-		cy.get('#add-menu-item input[name="description"]').type('description');
-		cy.get('#add-menu-item input[name="price"]').type('price');
+		fillNewMenuItemFields();
 		cy.get('#add-menu-item input[name="imgUrl"]').clear();
 		cy.get('#add-menu-item input').should('be.disabled');
 	});
 
 	it('submit button is not disabled if all input fields are not empty', () => {
-		cy.get('#add-menu-item input[name="name"]').type('name');
-		cy.get('#add-menu-item input[name="description"]').type('description');
-		cy.get('#add-menu-item input[name="price"]').type('price');
-		cy.get('#add-menu-item input[name="imgUrl"]').type('imgUrl');
+		fillNewMenuItemFields();
 		cy.get('#add-menu-item input').should('not.be.disabled');
 	});
 
 	it('submit button submits the new menu item, and that item appears in the list of menu items', () => {
-		cy.get('#add-menu-item input[name="name"]').type('name');
-		cy.get('#add-menu-item input[name="description"]').type('description');
-		cy.get('#add-menu-item input[name="price"]').type('price');
-		cy.get('#add-menu-item input[name="imgUrl"]').type('imgUrl');
+		fillNewMenuItemFields();
 
 		const initialMenuItemQuantity = 20;
 		cy.get('.menu-item')
@@ -113,5 +113,15 @@ describe.only('Add menu item', () => {
 		cy.get('#add-menu-item input[name="name"]').type('name');
 		cy.get('#add-menu-item button.clear-form').should('not.be.disabled');
 	});
-	// clear button clears inputs on submit
+
+	it('clear button clears all text inputs on click', () => {
+		fillNewMenuItemFields();
+
+		cy.get('#add-menu-item button.clear-form').click();
+		newMenuItemFieldNames.forEach((key) => {
+			cy.get(`#add-menu-item input[name="${key}"]`)
+				.invoke('val')
+				.should('be.empty');
+		});
+	});
 });
