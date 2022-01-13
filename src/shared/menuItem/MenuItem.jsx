@@ -88,6 +88,7 @@ export function MenuItem(props) {
                     )
                 })}
                 </form>
+                <button type="button" className="cancel-edit-button" onClick={() => setShowEditMenu(false)}>Cancel</button>
                 </EditMenuItemWrapper>
             )
     }
