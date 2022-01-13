@@ -83,7 +83,7 @@ describe.only('Add menu item', () => {
 		cy.get('#add-menu-item input').should('not.be.disabled');
 	});
 
-	it.only('submit button submits the new menu item, and that item appears in the list of menu items', () => {
+	it('submit button submits the new menu item, and that item appears in the list of menu items', () => {
 		cy.get('#add-menu-item input[name="name"]').type('name');
 		cy.get('#add-menu-item input[name="description"]').type('description');
 		cy.get('#add-menu-item input[name="price"]').type('price');
@@ -98,6 +98,8 @@ describe.only('Add menu item', () => {
 			.its('length')
 			.should('eq', initialMenuItemQuantity + 1);
 	});
+
+	// it.only('', () => {});
 	// should have a clear button
 	// clear button is disabled if all fields are empty
 	// clear button clears inputs on submit

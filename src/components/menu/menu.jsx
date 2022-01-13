@@ -60,6 +60,18 @@ function Menu() {
         setConfirmDelete(false);
     }
 
+    function addMenuItem(menuItem) {
+        const sortedMenuData = [...menuItemData];
+        sortedMenuData.sort((a,b) =>  a.key <= b.key ? 1 : -1);
+        const menuItemCopy = {...menuItem};
+        if (sortedMenuData.length) {
+            menuItemCopy.key = sortedMenuData[0].key + 1;
+        } else {
+            menuItemCopy.key = 0;
+        }
+        setMenuItemData([menuItemCopy, ...menuItemData]);
+    }
+
     const [menuItemData, setMenuItemData] = useState([]);
     const [confirmDelete, setConfirmDelete] = useState(false);
     const [itemToDelete, setItemToDelete] = useState({});
@@ -78,7 +90,7 @@ function Menu() {
         <>
         <Wrapper id="menu">
             <h2>Restaurant Menu</h2>
-        <AddMenuItem></AddMenuItem>
+        <AddMenuItem handleSubmit={addMenuItem}></AddMenuItem>
             <MenuItems>
                 {renderMenuItems(menuItemData)}
             </MenuItems>

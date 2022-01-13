@@ -24,7 +24,7 @@ const Form = styled.form`
     }
 `;
 
-export default function AddMenuItem() {
+export default function AddMenuItem(props) {
 
     const [menuItem, setMenuItem] = useState({
         name: '',
@@ -36,7 +36,7 @@ export default function AddMenuItem() {
     const [formValidity, setFormValidity] = useState(false);
 
     function checkFormValidity(newMenuItem) {
-        setFormValidity(!Object.keys(newMenuItem).find(key => !newMenuItem[key].trim().length))
+        setFormValidity(!Object.keys(newMenuItem).find(prop => !newMenuItem[prop]?.toString().trim()?.length))
     }
 
     function formInputOnChange(event) {
@@ -60,8 +60,13 @@ export default function AddMenuItem() {
         })
     }
 
+    function handleSubmit(event) {
+        event.preventDefault();
+        props.handleSubmit(menuItem);
+    }
+
     return(
-        <Form id="add-menu-item">
+        <Form id="add-menu-item" onSubmit={handleSubmit}>
             <h3>Add Menu Item</h3>
             {renderFormInputs()}
             <input disabled={!formValidity} type="submit" value="Submit"></input>
