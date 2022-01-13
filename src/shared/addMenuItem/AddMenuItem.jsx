@@ -70,6 +70,7 @@ export default function AddMenuItem(props) {
             <h3>Add Menu Item</h3>
             {renderFormInputs()}
             <input disabled={!formValidity} type="submit" value="Submit"></input>
+            <button class="clear-form">Clear</button>
         </Form>
     )
 }

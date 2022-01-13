@@ -60,11 +60,12 @@ describe.only('Add menu item', () => {
 	});
 
 	it('should exist.', () => {
-		cy.get('#add-menu-item').should('exist');
+		cy.get('#add-menu-item').should('be.visible');
 	});
 
 	it('should have a submit button', () => {
 		cy.get('#add-menu-item input').contains('Submit');
+		cy.get('#add-menu-item input').should('be.visible');
 	});
 
 	it('Its submit button should be disabled if any input field is empty', () => {
@@ -100,6 +101,7 @@ describe.only('Add menu item', () => {
 	});
 
 	it('should have a clear button', () => {
+		cy.get('#add-menu-item button.clear-form').contains('Clear');
 		cy.get('#add-menu-item button.clear-form').should('be.visible');
 	});
 
