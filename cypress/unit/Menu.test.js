@@ -105,7 +105,12 @@ describe.only('Add menu item', () => {
 		cy.get('#add-menu-item button.clear-form').should('be.visible');
 	});
 
-	// it.only('', () => {});
-	// clear button is disabled if all fields are empty
+	it('clear button is disabled if all fields are empty', () => {
+		cy.get('#add-menu-item button.clear-form').should('be.disabled');
+	});
+
+	// it('clear button is not disabled if any field is empty', () => {
+	// 	cy.get('#add-item-menu button.clear-form').should('be.disabled');
+	// });
 	// clear button clears inputs on submit
 });
