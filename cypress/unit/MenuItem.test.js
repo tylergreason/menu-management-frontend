@@ -16,6 +16,36 @@ function getFirstMenuItem() {
 	return cy.get('.menu-item').first();
 }
 
+function compareEditMenuValuesToDisplayValues() {
+	return newMenuItemFieldNames.forEach((fieldName) => {
+		if (fieldName === 'imgUrl') {
+			let displaySrc;
+			cy.get(`.display-${fieldName}`)
+				.first()
+				.then(($img) => {
+					displaySrc = $img[0].src;
+				});
+			cy.get(`.edit-${fieldName}`)
+				.first()
+				.then(($div) => {
+					expect(displaySrc).to.eq($div[0].value);
+				});
+		} else {
+			let displayValue;
+			cy.get(`.display-${fieldName}`)
+				.first()
+				.then(($div) => {
+					displayValue = $div.text();
+				});
+			cy.get(`.edit-${fieldName}`)
+				.first()
+				.then(($div) => {
+					expect(displayValue).to.eq($div[0].value);
+				});
+		}
+	});
+}
+
 // describe edit menu item button
 describe('Edit menu item button', () => {
 	beforeEach(() => {
@@ -33,19 +63,7 @@ describe('Edit menu item button', () => {
 
 	it.only('Should fill the form with the properties of the selected menu item', () => {
 		openEditMenuItemForm();
-		newMenuItemFieldNames.forEach((fieldName) => {
-			let displayValue;
-			cy.get(`.display-${fieldName}`)
-				.first()
-				.then(($div) => {
-					displayValue = $div.text();
-				});
-			cy.get(`.edit-${fieldName}`)
-				.first()
-				.then(($div) => {
-					expect(displayValue).to.eq($div[0].value);
-				});
-		});
+		compareEditMenuValuesToDisplayValues();
 	});
 });
 
