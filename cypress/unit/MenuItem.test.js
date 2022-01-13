@@ -26,6 +26,7 @@ describe('Edit menu item button', () => {
 		openEditMenuItemForm();
 		getEditForm().should('be.visible');
 	});
+	// it('Should fill the form with the properties of the selected menu item', () => {})
 });
 
 describe('Edit form', () => {
@@ -52,13 +53,16 @@ describe('Cancel button', () => {
 		getEditForm().get('.cancel-edit-button').first().click();
 		getEditForm().should('not.exist');
 	});
+	// it('Should revert the menu item back to its pre-editing state', () => {})
 });
-// it('Should revert the menu item back to its pre-editing state', () => {})
+
+// describe editing menu items
+// it('Should edit the menu item immediately, visible in the DOM', () => {})
 
 // describe submit button
 // it('Should exist.', () =>{})
 // it('Should be disabled if any form inputs are empty', () => {})
 // it('Should hide the edit menu form', () =>{})
+// ?? do you need this?? it('Should change the data of the menu item', () => {})
 
-// describe editing menu items
-// it('Should edit the menu item immediately, visible in the DOM', () => {})
+// it('', () => {})

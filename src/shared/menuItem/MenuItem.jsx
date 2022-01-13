@@ -51,16 +51,31 @@ const ItemDetails = styled.div`
 
 const EditMenuItemWrapper = styled.div`
     position: absolute;
-    height: 10rem;
+    height: 12rem;
     bottom: 10rem;
     background: rgba(100,100,100,0.8);
     width: 20rem;
     padding: 0 0.5rem;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+
+    h3, label {
+        color: ivory;
+    }
+
 
     .form-line-wrapper {
         display: flex; 
         justify-content: space-between;
         padding: 0.125rem 0;
+    }
+
+    .button-wrapper {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        margin: 0;
     }
 `;
 
@@ -88,7 +103,10 @@ export function MenuItem(props) {
                     )
                 })}
                 </form>
-                <button type="button" className="cancel-edit-button" onClick={() => setShowEditMenu(false)}>Cancel</button>
+                <div className="button-wrapper">
+                    <input type="submit" value="Submit"></input>
+                    <button type="button" className="cancel-edit-button" onClick={() => setShowEditMenu(false)}>Cancel</button>
+                </div>
                 </EditMenuItemWrapper>
             )
     }
