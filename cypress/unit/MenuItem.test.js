@@ -12,6 +12,10 @@ function getEditForm() {
 	return cy.get('.menu-item .edit-form');
 }
 
+function getFirstMenuItem() {
+	return cy.get('.menu-item').first();
+}
+
 // describe edit menu item button
 describe('Edit menu item button', () => {
 	beforeEach(() => {
@@ -26,7 +30,23 @@ describe('Edit menu item button', () => {
 		openEditMenuItemForm();
 		getEditForm().should('be.visible');
 	});
-	// it('Should fill the form with the properties of the selected menu item', () => {})
+
+	it.only('Should fill the form with the properties of the selected menu item', () => {
+		openEditMenuItemForm();
+		newMenuItemFieldNames.forEach((fieldName) => {
+			let displayValue;
+			cy.get(`.display-${fieldName}`)
+				.first()
+				.then(($div) => {
+					displayValue = $div.text();
+				});
+			cy.get(`.edit-${fieldName}`)
+				.first()
+				.then(($div) => {
+					expect(displayValue).to.eq($div[0].value);
+				});
+		});
+	});
 });
 
 describe('Edit form', () => {

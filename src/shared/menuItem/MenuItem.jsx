@@ -11,15 +11,17 @@ const Wrapper = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 0rem 1rem 1rem 1rem;  
+    position: relative;
     
     h3 {
         text-transform: capitalize;
     }
     img {
         width: 100%;
+        max-height: 50%;
     }
 
-    .description {
+    .display-description {
         width: 100%;
         margin-bottom: 1rem;
     }
@@ -52,7 +54,7 @@ const ItemDetails = styled.div`
 const EditMenuItemWrapper = styled.div`
     position: absolute;
     height: 12rem;
-    bottom: 10rem;
+    bottom: 0rem;
     background: rgba(100,100,100,0.8);
     width: 20rem;
     padding: 0 0.5rem;
@@ -82,6 +84,7 @@ const EditMenuItemWrapper = styled.div`
 export function MenuItem(props) {
 
     const [showEditMenu, setShowEditMenu] = useState(false);
+    const [editMenuItemData, setEditMenuItemData] = useState({});
 
     const menuItem = props.menuItem;
 
@@ -96,7 +99,7 @@ export function MenuItem(props) {
                     return (
                         <div className="form-line-wrapper" key={idx}>
                         <label htmlFor={input}> Item {input}: </label>               
-                        <input type="text" name={input} 
+                        <input type="text" name={input} value={editMenuItemData[input]} className={'edit-' + input}
                         // onChange={formInputOnChange}
                         />
                         </div>
@@ -112,20 +115,32 @@ export function MenuItem(props) {
     }
     }
 
+    function fillEditMenuItemFieldsWithData() {
+        setEditMenuItemData({
+            name: menuItem.name,
+            description: menuItem.description,
+            price: menuItem.price,
+            imgUrl: menuItem.imgUrl,
+        });
+    }
     
+    function handleEditButtonClick() {
+        fillEditMenuItemFieldsWithData();
+        setShowEditMenu(true);
+    }
 
     return (
         <Wrapper className="menu-item">
             {renderEditMenu()}
             <ItemDetails>
-                <h3>{menuItem.name}</h3>
-                <div>${menuItem.price}</div>
+                <h3 className="display-name">{menuItem.name}</h3>
+                <div className="display-price">${menuItem.price}</div>
             </ItemDetails>
-            <div className="description">{menuItem.description}</div>
+            <div className="display-description">{menuItem.description}</div>
 
-            <img src={menuItem.imgUrl} alt={menuItem.imgAlt}/>
+            <img src={menuItem.imgUrl} alt={menuItem.imgAlt} className="display-imgUrl"/>
             <div className="delete-wrapper">
-                <button className="edit-button" onClick={() => setShowEditMenu(true)}>Edit</button>
+                <button className="edit-button" onClick={() => handleEditButtonClick()}>Edit</button>
                 <button
                 className="delete-button"
                 onClick={() => props.clickDelete(menuItem)}
