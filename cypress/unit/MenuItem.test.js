@@ -20,8 +20,17 @@ describe('Edit menu item button', () => {
 	});
 });
 
-// describe edit form
-// it('Should have fields for name, description, price, and imgUrl.', () =>{})
+describe('edit form', () => {
+	it('Should have fields for name, description, price, and imgUrl.', () => {
+		mount(<Menu />);
+		cy.get('.menu-item .edit-button').first().click();
+		newMenuItemFieldNames.forEach((fieldName) => {
+			cy.get(`.menu-item .edit-form input[name=${fieldName}]`).should(
+				'be.visible'
+			);
+		});
+	});
+});
 
 // describe cancel button
 // it('Should exist.', () =>{})
