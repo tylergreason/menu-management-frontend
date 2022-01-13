@@ -11,10 +11,13 @@ describe('Edit menu item button', () => {
 	});
 
 	it('Should exist.', () => {
-		cy.get('.menu-item .edit-button').should('exist');
+		cy.get('.menu-item .edit-button').should('be.visible');
 	});
 
-	it('Should show the edit form of the menu item when clicked.', () => {});
+	it('Should show the edit form of the menu item when clicked.', () => {
+		cy.get('.menu-item .edit-button').first().click();
+		cy.get('.menu-item .edit-form').should('be.visible');
+	});
 });
 
 // describe edit form

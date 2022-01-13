@@ -49,6 +49,20 @@ const ItemDetails = styled.div`
     margin-bottom: 1rem;
 `;
 
+const EditMenuItemWrapper = styled.div`
+    position: absolute;
+    height: 10rem;
+    bottom: 10rem;
+    background: rgba(100,100,100,0.8);
+    width: 20rem;
+    padding: 0 0.5rem;
+
+    .form-line-wrapper {
+        display: flex; 
+        justify-content: space-between;
+        padding: 0.125rem 0;
+    }
+`;
 
 export function MenuItem(props) {
 
@@ -57,9 +71,26 @@ export function MenuItem(props) {
     const menuItem = props.menuItem;
 
     function renderEditMenu() {
-        if (showEditMenu) return (
-            <div>test!</div>
-        )
+        if (showEditMenu) {
+            const inputsToRender = ['name', 'description', 'price', 'imgUrl'];
+            return (
+                <EditMenuItemWrapper>
+                <h3>Edit Menu Item</h3>
+                <form className="edit-form">
+                    {inputsToRender.map((input, idx) => {
+                    return (
+                        <div className="form-line-wrapper" key={idx}>
+                        <label htmlFor={input}> Item {input}: </label>               
+                        <input type="text" name={input} 
+                        // onChange={formInputOnChange}
+                        />
+                        </div>
+                    )
+                })}
+                </form>
+                </EditMenuItemWrapper>
+            )
+    }
     }
 
     
