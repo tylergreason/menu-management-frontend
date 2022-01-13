@@ -103,7 +103,7 @@ export function MenuItem(props) {
                     return (
                         <div className="form-line-wrapper" key={idx}>
                         <label htmlFor={input}> Item {input}: </label>               
-                        <input type="text" name={input} value={editMenuItemData[input]} className={'edit-' + input}
+                        <input type="text" name={input} defaultValue={editMenuItemData[input]} className={'edit-' + input}
                         // onChange={formInputOnChange}
                         />
                         </div>

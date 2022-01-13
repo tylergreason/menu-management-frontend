@@ -4,6 +4,9 @@ import Menu from '../../src/components/menu/Menu';
 
 const newMenuItemFieldNames = ['name', 'description', 'price', 'imgUrl'];
 
+const exampleImgSrc =
+	'https://images.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png';
+
 function openEditMenuItemForm() {
 	return cy.get('.menu-item .edit-button').first().click();
 }
@@ -93,8 +96,42 @@ describe('Cancel button', () => {
 	// it('Should revert the menu item back to its pre-editing state', () => {})
 });
 
-// describe editing menu items
-// it('Should edit the menu item immediately, visible in the DOM', () => {})
+describe('Editing menu items', () => {
+	beforeEach(() => {
+		mount(<Menu />);
+		openEditMenuItemForm();
+	});
+
+	it.only('Should edit the menu item immediately, visible in the DOM', () => {
+		newMenuItemFieldNames.forEach((fieldName) => {
+			if (fieldName === 'imgUrl') {
+				const editImgInput = cy
+					.get(`input.edit-${fieldName}`)
+					.first()
+					.clear()
+					.type(exampleImgSrc);
+
+				const displayImg = cy
+					.get(`.display-${fieldName}`)
+					.first()
+					.then(($img) => {
+						expect($img[0].src).to.eq(exampleImgSrc);
+					});
+			} else {
+				cy.get(`.edit-${fieldName}`)
+					.first()
+					.type('test')
+					.then(($input) => {
+						cy.get(`.display-${fieldName}`)
+							.first()
+							.then(($div) => {
+								expect($input[0].value).to.eq($div.text());
+							});
+					});
+			}
+		});
+	});
+});
 
 // describe submit button
 // it('Should exist.', () =>{})
