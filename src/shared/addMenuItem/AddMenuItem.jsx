@@ -82,6 +82,7 @@ export default function AddMenuItem(props) {
     function handleSubmit(event) {
         event.preventDefault();
         props.handleSubmit(menuItem);
+        clearForm();
     }
 
     return(

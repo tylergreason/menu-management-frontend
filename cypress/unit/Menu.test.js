@@ -10,6 +10,13 @@ function fillNewMenuItemFields() {
 	});
 }
 
+function checkAllNewItemFieldsAreEmpty() {
+	newMenuItemFieldNames.forEach((field) => {
+		cy.get(`#add-menu-item input[name="${field}"]`)
+			.invoke('val')
+			.should('be.empty');
+	});
+}
 it('renders menu items', () => {
 	mount(<Menu />);
 	cy.get('section#menu').should('be.visible');
@@ -118,10 +125,12 @@ describe.only('Add menu item', () => {
 		fillNewMenuItemFields();
 
 		cy.get('#add-menu-item button.clear-form').click();
-		newMenuItemFieldNames.forEach((key) => {
-			cy.get(`#add-menu-item input[name="${key}"]`)
-				.invoke('val')
-				.should('be.empty');
-		});
+		checkAllNewItemFieldsAreEmpty();
+	});
+
+	it('Submit button clears form on click', () => {
+		fillNewMenuItemFields();
+		cy.get('#add-menu-item input[type="submit"]').click();
+		checkAllNewItemFieldsAreEmpty();
 	});
 });
