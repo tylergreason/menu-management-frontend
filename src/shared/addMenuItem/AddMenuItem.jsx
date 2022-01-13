@@ -18,6 +18,12 @@ const Form = styled.form`
         flex-flow: row;
         justify-content: space-between;
         margin: 0.5rem 0;
+        &.button-wrapper {
+            justify-content: space-evenly;
+            align-items: center;
+            margin: 0;
+            margin-top: 1rem;
+        }
     }
     label {
         font-style: capitalize;
@@ -89,8 +95,10 @@ export default function AddMenuItem(props) {
         <Form id="add-menu-item" onSubmit={handleSubmit}>
             <h3>Add Menu Item</h3>
             {renderFormInputs()}
-            <input disabled={!formValidity} type="submit" value="Submit"></input>
-            <button disabled={clearDisabled} type="button" className="clear-form" onClick={clearForm}>Clear</button>
+            <div className="button-wrapper">
+                <input disabled={!formValidity} type="submit" value="Submit"></input>
+                <button disabled={clearDisabled} type="button" className="clear-form" onClick={clearForm}>Clear</button>
+            </div>
         </Form>
     )
 }
