@@ -46,7 +46,6 @@ function compareEditMenuValuesToDisplayValues() {
 	});
 }
 
-// describe edit menu item button
 describe('Edit menu item button', () => {
 	beforeEach(() => {
 		mount(<Menu />);
@@ -61,7 +60,7 @@ describe('Edit menu item button', () => {
 		getEditForm().should('be.visible');
 	});
 
-	it.only('Should fill the form with the properties of the selected menu item', () => {
+	it('Should fill the form with the properties of the selected menu item', () => {
 		openEditMenuItemForm();
 		compareEditMenuValuesToDisplayValues();
 	});
