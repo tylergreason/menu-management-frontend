@@ -21,6 +21,10 @@ const Wrapper = styled.div`
         max-height: 50%;
     }
 
+    .display-price:before {
+        content: "$";
+    }
+
     .display-description {
         width: 100%;
         margin-bottom: 1rem;
@@ -134,7 +138,7 @@ export function MenuItem(props) {
             {renderEditMenu()}
             <ItemDetails>
                 <h3 className="display-name">{menuItem.name}</h3>
-                <div className="display-price">${menuItem.price}</div>
+                <div className="display-price">{menuItem.price}</div>
             </ItemDetails>
             <div className="display-description">{menuItem.description}</div>
 
