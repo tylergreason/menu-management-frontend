@@ -29,6 +29,11 @@ import AddMenuItem from '../../shared/addMenuItem/AddMenuItem';
 
 
 function Menu() {
+
+    const [menuItemData, setMenuItemData] = useState([]);
+    const [confirmDelete, setConfirmDelete] = useState(false);
+    const [itemToDelete, setItemToDelete] = useState({});
+    
     function renderMenuItems(menuItemData) {
         return menuItemData.map(item => {
                 return <MenuItem
@@ -71,10 +76,6 @@ function Menu() {
         }
         setMenuItemData([menuItemCopy, ...menuItemData]);
     }
-
-    const [menuItemData, setMenuItemData] = useState([]);
-    const [confirmDelete, setConfirmDelete] = useState(false);
-    const [itemToDelete, setItemToDelete] = useState({});
 
     useEffect(() => {
         if (!menuItemData.length) {
