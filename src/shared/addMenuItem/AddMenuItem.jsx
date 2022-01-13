@@ -40,8 +40,8 @@ export default function AddMenuItem(props) {
         setFormValidity(!Object.keys(newMenuItem).find(prop => !newMenuItem[prop]?.toString().trim()?.length))
     }
 
-    function checkClearDisabled() {
-        setClearDisabled(Object.keys(menuItem).find(key => !!menuItem[key]));
+    function checkClearDisabled(newMenuItem) {
+        setClearDisabled(!Object.keys(newMenuItem).some(key => !!newMenuItem[key]));
     }
 
     function formInputOnChange(event) {
@@ -49,7 +49,7 @@ export default function AddMenuItem(props) {
         menuItemCopy[event.target.name] = event.target.value;
         setMenuItem(menuItemCopy);
         checkFormValidity(menuItemCopy);
-        checkClearDisabled();
+        checkClearDisabled(menuItemCopy);
     }
 
     function renderFormInputs() {
@@ -76,7 +76,7 @@ export default function AddMenuItem(props) {
             <h3>Add Menu Item</h3>
             {renderFormInputs()}
             <input disabled={!formValidity} type="submit" value="Submit"></input>
-            <button class="clear-form" disabled={clearDisabled}>Clear</button>
+            <button type="button" className="clear-form" disabled={clearDisabled}>Clear</button>
         </Form>
     )
 }

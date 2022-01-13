@@ -109,8 +109,9 @@ describe.only('Add menu item', () => {
 		cy.get('#add-menu-item button.clear-form').should('be.disabled');
 	});
 
-	// it('clear button is not disabled if any field is empty', () => {
-	// 	cy.get('#add-item-menu button.clear-form').should('be.disabled');
-	// });
+	it('clear button is not disabled if any field is empty', () => {
+		cy.get('#add-menu-item input[name="name"]').type('name');
+		cy.get('#add-menu-item button.clear-form').should('not.be.disabled');
+	});
 	// clear button clears inputs on submit
 });
