@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -51,9 +51,22 @@ const ItemDetails = styled.div`
 
 
 export function MenuItem(props) {
+
+    const [showEditMenu, setShowEditMenu] = useState(false);
+
     const menuItem = props.menuItem;
+
+    function renderEditMenu() {
+        if (showEditMenu) return (
+            <div>test!</div>
+        )
+    }
+
+    
+
     return (
         <Wrapper className="menu-item">
+            {renderEditMenu()}
             <ItemDetails>
                 <h3>{menuItem.name}</h3>
                 <div>${menuItem.price}</div>
@@ -62,7 +75,7 @@ export function MenuItem(props) {
 
             <img src={menuItem.imgUrl} alt={menuItem.imgAlt}/>
             <div className="delete-wrapper">
-                <button className="edit-button">Edit</button>
+                <button className="edit-button" onClick={() => setShowEditMenu(true)}>Edit</button>
                 <button
                 className="delete-button"
                 onClick={() => props.clickDelete(menuItem)}

@@ -13,8 +13,9 @@ describe('Edit menu item button', () => {
 	it('Should exist.', () => {
 		cy.get('.menu-item .edit-button').should('exist');
 	});
+
+	it('Should show the edit form of the menu item when clicked.', () => {});
 });
-// it('Should show the edit form of the menu item when clicked.', () =>{})
 
 // describe edit form
 // it('Should have fields for name, description, price, and imgUrl.', () =>{})
