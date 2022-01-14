@@ -91,14 +91,12 @@ export function MenuItem(props) {
     const [editMenuItemData, setEditMenuItemData] = useState({});
     const [menuItemData, setMenuItemData] = useState({});
     const [formValidity, setFormValidity] = useState(true);
+    const [placeholderMenuItemData, setPlaceholderMenuItemData] = useState({});
 
-    // const [placeholderMenuItemData, setPlaceholderMenuItemData] = {};
     
     useEffect(() => {
         if (!Object.keys(menuItemData).length) setMenuItemData(props.menuItem);
     }, [menuItemData, props])
-
-    const menuItem = props.menuItem;
 
     function checkFormValidity(newMenuItem) {
         setFormValidity(!Object.keys(editMenuItemData).find(prop => !newMenuItem[prop]?.toString().trim()?.length))
@@ -109,25 +107,33 @@ export function MenuItem(props) {
         const menuItemCopy = {...menuItemData};
         menuItemCopy[event.target.name] = event.target.value;
         setMenuItemData(menuItemCopy);
+        setEditMenuItemData(menuItemCopy);
         checkFormValidity(menuItemCopy);
     }
 
     function fillEditMenuItemFieldsWithData() {
         setEditMenuItemData({
-            name: menuItem.name,
-            description: menuItem.description,
-            price: menuItem.price,
-            imgUrl: menuItem.imgUrl,
+            name: menuItemData.name,
+            description: menuItemData.description,
+            price: menuItemData.price,
+            imgUrl: menuItemData.imgUrl,
         });
     }
     
     function handleEditButtonClick() {
+        setPlaceholderMenuItemData(menuItemData);
         fillEditMenuItemFieldsWithData();
         setShowEditMenu(true);
     }
 
+    function handleCancelButtonClick() {
+        setMenuItemData(placeholderMenuItemData);
+        setShowEditMenu(false);
+    }
+
     function onEditFormSubmit(event) {
         event.preventDefault();
+        setMenuItemData(editMenuItemData);
         setShowEditMenu(false);
     }
 
@@ -151,7 +157,7 @@ export function MenuItem(props) {
                 })}
                 <div className="button-wrapper">
                     <input type="submit" disabled={!formValidity} value="Submit"></input>
-                    <button type="button" className="cancel-edit-button" onClick={() => setShowEditMenu(false)}>Cancel</button>
+                    <button type="button" className="cancel-edit-button" onClick={() => handleCancelButtonClick()}>Cancel</button>
                 </div>
                 </form>
                 </EditMenuItemWrapper>

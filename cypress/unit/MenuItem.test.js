@@ -93,7 +93,65 @@ describe('Cancel button', () => {
 		getEditForm().get('.cancel-edit-button').first().click();
 		getEditForm().should('not.exist');
 	});
-	// it('Should revert the menu item back to its pre-editing state', () => {})
+
+	it.only('Should revert the menu item back to its pre-editing state', () => {
+		const preEditMenuItemData = {
+			name: '',
+			description: '',
+			price: '',
+			imgUrl: '',
+		};
+
+		newMenuItemFieldNames.forEach((fieldName) => {
+			if (fieldName === 'imgUrl') {
+				cy.get(`.display-${fieldName}`)
+					.first()
+					.then(($img) => {
+						preEditMenuItemData.imgUrl = $img[0].src;
+						$img[0].src = 'a';
+					});
+			} else {
+				cy.get(`.display-${fieldName}`)
+					.first()
+					.then(($div) => {
+						preEditMenuItemData[fieldName] = $div.text();
+					});
+				cy.get(`.edit-form input[name=${fieldName}]`)
+					.first()
+					.type('test');
+			}
+		});
+
+		getEditForm().get('.cancel-edit-button').first().click();
+		cy.wait(1000);
+		const editedMenuItemData = {
+			name: '',
+			description: '',
+			price: '',
+			imgUrl: '',
+		};
+
+		newMenuItemFieldNames.forEach((fieldName) => {
+			if (fieldName === 'imgUrl') {
+				cy.get(`.display-${fieldName}`)
+					.first()
+					.then(($img) => {
+						editedMenuItemData.imgUrl = $img[0].src;
+					});
+			} else {
+				cy.get(`.display-${fieldName}`)
+					.first()
+					.then(($div) => {
+						editedMenuItemData[fieldName] = $div.text();
+					});
+			}
+		});
+		cy.get('.menu-item').then(() => {
+			expect(JSON.stringify(preEditMenuItemData)).to.eq(
+				JSON.stringify(editedMenuItemData)
+			);
+		});
+	});
 });
 
 describe('Editing menu items', () => {
@@ -147,7 +205,7 @@ describe('submit button', () => {
 		getEditMenuItemSubmitButton().should('be.disabled');
 	});
 
-	it.only('Should hide the edit menu form when submitted', () => {
+	it('Should hide the edit menu form when submitted', () => {
 		getEditMenuItemSubmitButton().click();
 		getEditForm().should('not.exist');
 	});
