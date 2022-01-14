@@ -102,7 +102,7 @@ describe('Editing menu items', () => {
 		openEditMenuItemForm();
 	});
 
-	it.only('Should edit the menu item immediately, visible in the DOM', () => {
+	it('Should edit the menu item immediately, visible in the DOM', () => {
 		newMenuItemFieldNames.forEach((fieldName) => {
 			if (fieldName === 'imgUrl') {
 				const editImgInput = cy
@@ -133,8 +133,17 @@ describe('Editing menu items', () => {
 	});
 });
 
-// describe submit button
-// it('Should exist.', () =>{})
+describe('submit button', () => {
+	beforeEach(() => {
+		mount(<Menu />);
+		openEditMenuItemForm();
+	});
+	it('Should exist.', () => {
+		cy.get('.edit-menu-item-wrapper input[type="submit"]').should(
+			'be.visible'
+		);
+	});
+});
 // it('Should be disabled if any form inputs are empty', () => {})
 // it('Should hide the edit menu form', () =>{})
 // ?? do you need this?? it('Should change the data of the menu item', () => {})

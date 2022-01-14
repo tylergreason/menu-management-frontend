@@ -90,7 +90,8 @@ export function MenuItem(props) {
     const [showEditMenu, setShowEditMenu] = useState(false);
     const [editMenuItemData, setEditMenuItemData] = useState({});
     const [menuItemData, setMenuItemData] = useState({});
-
+    // const [placeholderMenuItemData, setPlaceholderMenuItemData] = {};
+    
     useEffect(() => {
         if (!Object.keys(menuItemData).length) setMenuItemData(props.menuItem);
     }, [menuItemData, props])
@@ -101,7 +102,7 @@ export function MenuItem(props) {
         if (showEditMenu) {
             const inputsToRender = ['name', 'description', 'price', 'imgUrl'];
             return (
-                <EditMenuItemWrapper>
+                <EditMenuItemWrapper className="edit-menu-item-wrapper">
                 <h3>Edit Menu Item</h3>
                 <form className="edit-form">
                     {inputsToRender.map((input, idx) => {
