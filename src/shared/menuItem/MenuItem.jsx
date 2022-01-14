@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -89,6 +89,11 @@ export function MenuItem(props) {
 
     const [showEditMenu, setShowEditMenu] = useState(false);
     const [editMenuItemData, setEditMenuItemData] = useState({});
+    const [menuItemData, setMenuItemData] = useState({});
+
+    useEffect(() => {
+        if (!Object.keys(menuItemData).length) setMenuItemData(props.menuItem);
+    })
 
     const menuItem = props.menuItem;
 
@@ -104,7 +109,7 @@ export function MenuItem(props) {
                         <div className="form-line-wrapper" key={idx}>
                         <label htmlFor={input}> Item {input}: </label>               
                         <input type="text" name={input} defaultValue={editMenuItemData[input]} className={'edit-' + input}
-                        // onChange={formInputOnChange}
+                        onChange={editInputOnChange}
                         />
                         </div>
                     )
@@ -117,6 +122,17 @@ export function MenuItem(props) {
                 </EditMenuItemWrapper>
             )
     }
+    }
+
+    function editInputOnChange(event) {
+        event.preventDefault();
+        console.log(event);
+        console.log(event.target.value);
+        console.log(event.target.name);
+        const menuItemCopy = {...menuItemData};
+        menuItemCopy[event.target.name] = event.target.value;
+        console.log(menuItemCopy);
+        setMenuItemData(menuItemCopy);
     }
 
     function fillEditMenuItemFieldsWithData() {
@@ -137,17 +153,17 @@ export function MenuItem(props) {
         <Wrapper className="menu-item">
             {renderEditMenu()}
             <ItemDetails>
-                <h3 className="display-name">{menuItem.name}</h3>
-                <div className="display-price">{menuItem.price}</div>
+                <h3 className="display-name">{menuItemData.name}</h3>
+                <div className="display-price">{menuItemData.price}</div>
             </ItemDetails>
-            <div className="display-description">{menuItem.description}</div>
+            <div className="display-description">{menuItemData.description}</div>
 
-            <img src={menuItem.imgUrl} alt={menuItem.imgAlt} className="display-imgUrl"/>
+            <img src={menuItemData.imgUrl} alt={menuItemData.imgAlt} className="display-imgUrl"/>
             <div className="delete-wrapper">
                 <button className="edit-button" onClick={() => handleEditButtonClick()}>Edit</button>
                 <button
                 className="delete-button"
-                onClick={() => props.clickDelete(menuItem)}
+                onClick={() => props.clickDelete(menuItemData)}
                 >Delete</button>
             </div>
         </Wrapper>
