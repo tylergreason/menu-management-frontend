@@ -15,8 +15,8 @@ function getEditForm() {
 	return cy.get('.menu-item .edit-form');
 }
 
-function getFirstMenuItem() {
-	return cy.get('.menu-item').first();
+function getEditMenuItemSubmitButton() {
+	return cy.get('.edit-menu-item-wrapper input[type="submit"]');
 }
 
 function compareEditMenuValuesToDisplayValues() {
@@ -139,12 +139,14 @@ describe('submit button', () => {
 		openEditMenuItemForm();
 	});
 	it('Should exist.', () => {
-		cy.get('.edit-menu-item-wrapper input[type="submit"]').should(
-			'be.visible'
-		);
+		getEditMenuItemSubmitButton().should('be.visible');
+	});
+
+	it('Should be disabled if any form inputs are empty', () => {
+		cy.get('.menu-item .edit-form input').first().clear();
+		getEditMenuItemSubmitButton().should('be.disabled');
 	});
 });
-// it('Should be disabled if any form inputs are empty', () => {})
 // it('Should hide the edit menu form', () =>{})
 // ?? do you need this?? it('Should change the data of the menu item', () => {})
 

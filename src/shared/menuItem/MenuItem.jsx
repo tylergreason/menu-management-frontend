@@ -90,6 +90,8 @@ export function MenuItem(props) {
     const [showEditMenu, setShowEditMenu] = useState(false);
     const [editMenuItemData, setEditMenuItemData] = useState({});
     const [menuItemData, setMenuItemData] = useState({});
+    const [formValidity, setFormValidity] = useState(false);
+
     // const [placeholderMenuItemData, setPlaceholderMenuItemData] = {};
     
     useEffect(() => {
@@ -97,6 +99,37 @@ export function MenuItem(props) {
     }, [menuItemData, props])
 
     const menuItem = props.menuItem;
+
+    function checkFormValidity(newMenuItem) {
+        setFormValidity(!Object.keys(editMenuItemData).find(prop => !newMenuItem[prop]?.toString().trim()?.length))
+    }
+
+    function editInputOnChange(event) {
+        event.preventDefault();
+        console.log(event);
+        console.log(event.target.value);
+        console.log(event.target.name);
+        const menuItemCopy = {...menuItemData};
+        menuItemCopy[event.target.name] = event.target.value;
+        console.log(menuItemCopy);
+        setMenuItemData(menuItemCopy);
+        checkFormValidity(menuItemCopy);
+    }
+
+    function fillEditMenuItemFieldsWithData() {
+        setEditMenuItemData({
+            name: menuItem.name,
+            description: menuItem.description,
+            price: menuItem.price,
+            imgUrl: menuItem.imgUrl,
+        });
+    }
+    
+    function handleEditButtonClick() {
+        fillEditMenuItemFieldsWithData();
+        setShowEditMenu(true);
+    }
+
 
     function renderEditMenu() {
         if (showEditMenu) {
@@ -117,37 +150,12 @@ export function MenuItem(props) {
                 })}
                 </form>
                 <div className="button-wrapper">
-                    <input type="submit" value="Submit"></input>
+                    <input type="submit" disabled={!formValidity} value="Submit"></input>
                     <button type="button" className="cancel-edit-button" onClick={() => setShowEditMenu(false)}>Cancel</button>
                 </div>
                 </EditMenuItemWrapper>
             )
     }
-    }
-
-    function editInputOnChange(event) {
-        event.preventDefault();
-        console.log(event);
-        console.log(event.target.value);
-        console.log(event.target.name);
-        const menuItemCopy = {...menuItemData};
-        menuItemCopy[event.target.name] = event.target.value;
-        console.log(menuItemCopy);
-        setMenuItemData(menuItemCopy);
-    }
-
-    function fillEditMenuItemFieldsWithData() {
-        setEditMenuItemData({
-            name: menuItem.name,
-            description: menuItem.description,
-            price: menuItem.price,
-            imgUrl: menuItem.imgUrl,
-        });
-    }
-    
-    function handleEditButtonClick() {
-        fillEditMenuItemFieldsWithData();
-        setShowEditMenu(true);
     }
 
     return (
