@@ -1,19 +1,13 @@
-# Menu Management Frontend Level 1
+# Menu Management Front End
 
-Hi, and thanks for reviewing my code! This was written to satisfy the requirements for a take home coding challenging, defined here: 
+Hi, and thanks for reviewing my code! If you're reading this, then you are probably from the company for which this code challenge was completed. Here you will find level 1 of the challenge as the main branch, and levels 2 and 3 are contained in pull requests. 
 
-### Level 1: Basics
+I had a really great time completing this challenge. I haven't used React in over a year, and it felt good to come back and work the rust off. I have been an Angular developer for almost a year and a half, so coming back to React was a bit of an adjustment. 
 
-Present a Menu as a series of Menu Item Cards, having:
+You will undoubtedly find issues with my code. I know of a few that I didn't have the time to go back and fix, or were already committed to a final PR and I didn't feel right in going back and fixing them after the fact. Small oversights, like not including an `imgAlt` property on new menu items, or styling not looking *quite* right in Firefox, might stand out. 
 
-- Image (any random image)
+However, the biggest issue, and the one I think needs explaining as to not look *too* wrong, is that I used Cypress for doing unit tests. I'm still a little new to testing, and I got it stuck in my head that I needed to use Cypress to perform tests for this app (I believe I was told by a friend that works for your company that you use Cypress - though I'm sure now that's not the only testing library you use!). I wanted to use React and Cypress to 1. show you I'm a capable React developer and could learn a new library quickly and 2. challenge myself to become reacquainted with React quickly and apply my existing knowledge of unit testing to a new library. In hindsight I should have used Angular and Jasmine, as I'm much more familiar with them, but what's done is done. 
 
-- Title
+You'll find that I used Cypress for unit testing the second and third levels of this challenge. I realize now that I should have been using a different library altogether for unit testing, and that mangling an end-to-end testing library to perform unit tests was the wrong move. That being said, I think I made pretty good use of Cypress for unit tests! The code is well tested, and the tests I wrote give me confidence that the code I wrote works (though one test in level 3 does not pass, and that's where I finished the code challenge). 
 
-- Description
-
-- Price
-
-- This should be responsive and readable on desktop or mobile browser
-
-I kept things simple and to the point for this challenge. It took me longer than anticipated because I have not used React in quite a while, but I found that a lot of what I was missing came back to me as I progressed. 
+All that is to say: there are things wrong with this code, and I don't want the person(s) reviewing this to assume I'm submitting it under the impression that it's perfect. But, I am not saying it's bad either. Hopefully we'll meet soon to talk it over. 
