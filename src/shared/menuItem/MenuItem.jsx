@@ -81,7 +81,7 @@ const EditMenuItemWrapper = styled.div`
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-        margin: 0;
+        margin: 0.5rem;
     }
 `;
 
@@ -90,7 +90,7 @@ export function MenuItem(props) {
     const [showEditMenu, setShowEditMenu] = useState(false);
     const [editMenuItemData, setEditMenuItemData] = useState({});
     const [menuItemData, setMenuItemData] = useState({});
-    const [formValidity, setFormValidity] = useState(false);
+    const [formValidity, setFormValidity] = useState(true);
 
     // const [placeholderMenuItemData, setPlaceholderMenuItemData] = {};
     
@@ -106,12 +106,8 @@ export function MenuItem(props) {
 
     function editInputOnChange(event) {
         event.preventDefault();
-        console.log(event);
-        console.log(event.target.value);
-        console.log(event.target.name);
         const menuItemCopy = {...menuItemData};
         menuItemCopy[event.target.name] = event.target.value;
-        console.log(menuItemCopy);
         setMenuItemData(menuItemCopy);
         checkFormValidity(menuItemCopy);
     }
@@ -130,6 +126,11 @@ export function MenuItem(props) {
         setShowEditMenu(true);
     }
 
+    function onEditFormSubmit(event) {
+        event.preventDefault();
+        setShowEditMenu(false);
+    }
+
 
     function renderEditMenu() {
         if (showEditMenu) {
@@ -137,7 +138,7 @@ export function MenuItem(props) {
             return (
                 <EditMenuItemWrapper className="edit-menu-item-wrapper">
                 <h3>Edit Menu Item</h3>
-                <form className="edit-form">
+                <form className="edit-form" onSubmit={onEditFormSubmit}>
                     {inputsToRender.map((input, idx) => {
                     return (
                         <div className="form-line-wrapper" key={idx}>
@@ -148,11 +149,11 @@ export function MenuItem(props) {
                         </div>
                     )
                 })}
-                </form>
                 <div className="button-wrapper">
                     <input type="submit" disabled={!formValidity} value="Submit"></input>
                     <button type="button" className="cancel-edit-button" onClick={() => setShowEditMenu(false)}>Cancel</button>
                 </div>
+                </form>
                 </EditMenuItemWrapper>
             )
     }

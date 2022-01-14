@@ -148,9 +148,8 @@ describe('submit button', () => {
 	});
 
 	it.only('Should hide the edit menu form when submitted', () => {
-		cy.get('.menu-item .edit-form input').first().type('a');
 		getEditMenuItemSubmitButton().click();
-		getEditForm().should('not.be.visible');
+		getEditForm().should('not.exist');
 	});
 });
 // ?? do you need this?? it('Should change the data of the menu item', () => {})
