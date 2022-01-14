@@ -93,7 +93,7 @@ export function MenuItem(props) {
 
     useEffect(() => {
         if (!Object.keys(menuItemData).length) setMenuItemData(props.menuItem);
-    })
+    }, [menuItemData, props])
 
     const menuItem = props.menuItem;
 

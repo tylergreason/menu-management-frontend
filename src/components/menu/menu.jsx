@@ -20,6 +20,7 @@ import AddMenuItem from '../../shared/addMenuItem/AddMenuItem';
     const MenuItems = styled.div`
     display: flex;
     flex-flow: row wrap;
+    justify-content: space-between;
     
     .menu-item {
         margin: 1rem;
